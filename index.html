@@ -1,11 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Fun Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Abood</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the screen */
+            margin: 0;
+            background-color: #ffdde1; /* Soft apology color */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden; /* Prevents scrollbars when button moves */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #d63031;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .button-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between buttons */
+            position: relative;
+            height: 60px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-weight: bold;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #yesBtn {
+            background-color: #00b894;
+            color: white;
+            box-shadow: 0 5px #00a383;
+        }
+        
+        #noBtn {
+            background-color: #d63031;
+            color: white;
+            box-shadow: 0 5px #c0392b;
+            position: absolute; /* Required to make it move around */
+        }
+
+        /* The hidden success message */
+        #successMessage {
+            display: none; /* Hidden by default */
+            color: #00b894;
+        }
+        #successMessage h2 {
+            font-size: 3rem;
+        }
+    </style>
 </head>
-<body style="background-color: #f0f0f0; text-align: center; font-family: Arial;">
-    <h1>Hello, World!</h1>
-    <p>This is my first website hosted for free on GitHub.</p>
-    <p>I built this for fun.</p>
+<body>
+
+    <div class="container">
+        <div id="questionBlock">
+            <h1>Will you forgive me Abood? 🥺</h1>
+            <div class="button-box">
+                <div style="position: relative; width: 100px;">
+                     <button id="yesBtn">Yes</button>
+                </div>
+                 <button id="noBtn">No</button>
+            </div>
+        </div>
+
+        <div id="successMessage">
+            <h2>YAY! Thanks Abood! ❤️</h2>
+            <p>You're the best.</p>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhkZzh3NzF0YnQ4emh4a2E0eDV2a3Z5a2g4eW16YXhpbmd4eG1uZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MeIucAjPKoA120R7sN/giphy.gif" alt="Happy gif" width="300">
+        </div>
+    </div>
+
+
+    <script>
+        // --- JAVASCRIPT FUNCIONALITY ---
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionBlock = document.getElementById('questionBlock');
+        const successMessage = document.getElementById('successMessage');
+
+        // 1. What happens when YES is clicked
+        yesBtn.addEventListener('click', function() {
+            // Hide the question and buttons
+            questionBlock.style.display = 'none';
+            // Show the success message
+            successMessage.style.display = 'block';
+            // Change background color to happy green
+            document.body.style.backgroundColor = "#a8e6cf";
+        });
+
+        // 2. What happens when mouse tries to touch NO
+        // We use 'mouseover' so it moves before they can click it
+        noBtn.addEventListener('mouseover', function() {
+            // Get the width and height of the browser window
+            const maxWidth = window.innerWidth - 150; // minus button width
+            const maxHeight = window.innerHeight - 100; // minus button height
+
+            // Generate random positions randomly
+            const randomX = Math.floor(Math.random() * maxWidth);
+            const randomY = Math.floor(Math.random() * maxHeight);
+
+            // Apply new positions to the button
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        });
+    </script>
+
 </body>
 </html>
