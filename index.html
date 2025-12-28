@@ -117,6 +117,7 @@
         // 2. What happens when mouse tries to touch NO
         // We use 'mouseover' so it moves before they can click it
         noBtn.addEventListener('mouseover', function() {
+            noBtn.style.position = 'fixed';
             // Get the width and height of the browser window
             const maxWidth = window.innerWidth - 150; // minus button width
             const maxHeight = window.innerHeight - 100; // minus button height
