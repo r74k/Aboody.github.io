@@ -9,19 +9,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Full height of the screen */
+            height: 100vh;
             margin: 0;
-            background-color: #ffdde1; /* Soft apology color */
+            background-color: #ffdde1;
             font-family: 'Arial', sans-serif;
             text-align: center;
-            overflow: hidden; /* Prevents scrollbars when button moves */
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 3rem;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 90%; /* Keeps it good on phones */
         }
 
         h1 {
@@ -33,9 +33,8 @@
         .button-box {
             display: flex;
             justify-content: center;
-            gap: 20px; /* Space between buttons */
-            position: relative;
-            height: 60px;
+            gap: 20px;
+            margin-top: 20px;
         }
 
         button {
@@ -44,8 +43,8 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.2s;
             font-weight: bold;
+            transition: transform 0.1s;
         }
 
         button:active {
@@ -55,23 +54,29 @@
         #yesBtn {
             background-color: #00b894;
             color: white;
-            box-shadow: 0 5px #00a383;
         }
         
         #noBtn {
             background-color: #d63031;
             color: white;
-            box-shadow: 0 5px #c0392b;
-            position: absolute; /* Required to make it move around */
         }
 
-        /* The hidden success message */
+        /* Hidden success area */
         #successMessage {
-            display: none; /* Hidden by default */
-            color: #00b894;
+            display: none;
+            color: #2d3436;
         }
         #successMessage h2 {
-            font-size: 3rem;
+            color: #00b894;
+            font-size: 2.5rem;
+        }
+        
+        /* Style for your uploaded image */
+        #myCustomImage {
+            margin-top: 20px;
+            max-width: 100%; /* Ensures image fits on screen */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
     </style>
 </head>
@@ -81,54 +86,42 @@
         <div id="questionBlock">
             <h1>Will you forgive me Abood? 🥺</h1>
             <div class="button-box">
-                <div style="position: relative; width: 100px;">
-                     <button id="yesBtn">Yes</button>
-                </div>
-                 <button id="noBtn">No</button>
+                <button id="yesBtn">Yes</button>
+                <button id="noBtn">No</button>
             </div>
         </div>
 
         <div id="successMessage">
-            <h2>YAY! Thanks Abood! ❤️</h2>
-            <p>You're the best.</p>
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhkZzh3NzF0YnQ4emh4a2E0eDV2a3Z5a2g4eW16YXhpbmd4eG1uZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MeIucAjPKoA120R7sN/giphy.gif" alt="Happy gif" width="300">
+            <h2>I knew you were the best! ❤️</h2>
+            <p>Thanks for forgiving me, bro.</p>
+            
+            <img id="myCustomImage" src="./abood_pic.jpg" alt="Our Photo">
         </div>
     </div>
 
-
     <script>
-        // --- JAVASCRIPT FUNCIONALITY ---
-
         const yesBtn = document.getElementById('yesBtn');
         const noBtn = document.getElementById('noBtn');
         const questionBlock = document.getElementById('questionBlock');
         const successMessage = document.getElementById('successMessage');
 
-        // 1. What happens when YES is clicked
+        // --- IF HE CLICKS YES ---
         yesBtn.addEventListener('click', function() {
-            // Hide the question and buttons
+            // Hide the question
             questionBlock.style.display = 'none';
-            // Show the success message
+            // Show your message and photo
             successMessage.style.display = 'block';
-            // Change background color to happy green
+            // Change background to happy green
             document.body.style.backgroundColor = "#a8e6cf";
         });
 
-        // 2. What happens when mouse tries to touch NO
-        // We use 'mouseover' so it moves before they can click it
-        noBtn.addEventListener('mouseover', function() {
-            noBtn.style.position = 'fixed';
-            // Get the width and height of the browser window
-            const maxWidth = window.innerWidth - 150; // minus button width
-            const maxHeight = window.innerHeight - 100; // minus button height
-
-            // Generate random positions randomly
-            const randomX = Math.floor(Math.random() * maxWidth);
-            const randomY = Math.floor(Math.random() * maxHeight);
-
-            // Apply new positions to the button
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
+        // --- IF HE CLICKS NO ---
+        noBtn.addEventListener('click', function() {
+            // Attempt to close the tab
+            window.close();
+            
+            // Backup: If browser blocks closing, send him to Google
+            window.location.href = "https://www.pornhub.com";
         });
     </script>
 
